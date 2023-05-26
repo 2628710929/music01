@@ -2,8 +2,8 @@
   <div class="home">
     <top-nav></top-nav>
 	<swiper-com></swiper-com>
-	<music-list></music-list>
 	<icon-list></icon-list>
+	<music-list></music-list>
   </div>
 </template>
 

@@ -1,47 +1,52 @@
 <template>
-	<div id="swipercom">
-		<div class="swiper-container" id="swiperIndex">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide"  v-for="(item,index) in imgs" :key="index" >
-					<img :src="item.pic" alt=""/>
+    <div id="swipercom">
+        <div class="swiper-container" id="swiperIndex">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="(item,index) in imgs" :key="index">
+					<img :src="item.pic" alt="">
 				</div>
-			</div>
-			<div class="swiper-pagination"></div>
-		</div>
-	</div>
+            </div>
+            <div class="swiper-pagination">
+
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
-	import "swiper/css/swiper.css"
-	import Swiper from "swiper"
-	import {getBanner} from "@/api/index.js"//@指的是项目目录 src
-	export default {
-		name:"swipercom",
-		data(){
-			return{
-				imgs:[
-					{pic:require("../assets/logo.png")},
-					{pic:require("../assets/logo.png")},
-					{pic:require("../assets/logo.png")},
-					{pic:require("../assets/logo.png")},
-					{pic:require("../assets/logo.png")},
-					{pic:require("../assets/logo.png")},
-					{pic:require("../assets/logo.png")}
-				]
-			}
-		},
-		async mounted(){
-			var res = await getBanner(1);
-			this.imgs = res.data.banners;
-			var myswiper = new Swiper("#swiperIndex",{
-				pagination:{
-					el:".swiper-pagination",
-					clickable:true
-				}
-			})
-		}
-	}
+import "swiper/css/swiper.css"
+import swiper from "swiper"
+import { getBanner } from "@/api/index"
+export default{
+    name:"swipercom",
+    data(){
+        return{
+            imgs:[
+				{pic:require("../assets/logo.png")},
+				{pic:require("../assets/logo.png")},
+				{pic:require("../assets/logo.png")},
+				{pic:require("../assets/logo.png")},
+                {pic:require("../assets/logo.png")},
+                {pic:require("../assets/logo.png")},
+                {pic:require("../assets/logo.png")}
+            ]
+        }
+    },
+    async mounted() {
+        var res = await getBanner(1);
+        this.imgs = res.data.banners;
+        var myswiper = new swiper("#swiperIndex",{
+            loop:true,
+            pagination:{
+                el:".swiper-pagination",
+                clickable:true
+            }
+        })
+
+    },
+}
 </script>
+
 
 <style lang="less">
     #swipercom{
@@ -50,11 +55,7 @@
         width: 7.1rem;
         height: 2.6rem;
         border-radius: 0.1rem;
-        .swiper-slide{
-			display: flex; 
-			justify-content: center; 
-			align-items: center;
-		}
+        
         .swiper-slide img{
             width: 100%;
         }
@@ -64,4 +65,4 @@
     
     }
     }
-</style>
+    </style>
