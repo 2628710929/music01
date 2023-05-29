@@ -11,4 +11,8 @@ export function getMusic(limit=10){
 	return axios.get(`${baseUrl}/personalized?limit=${limit}`);
 }
 
-export default {getBanner,getMusic};
+export function getListview(id){
+	return axios.get(`${baseUrl}/playlist/detail?id=${id}`);
+}
+
+export default {getBanner,getMusic,getListview};
